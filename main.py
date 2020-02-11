@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 list_of_char = []
-list_of_name = ["pierre", "justine", "Juliette", "valentin", "jenny", "constance",
-                "william", "théo", "christopher", "joel", "charline"]
 
 
 def init_list_character():
@@ -27,13 +22,15 @@ def count_character(name):
 
     i = 0
     while i < len(name):
-        list_of_char[ord(name[i])]["count"] += 1
 
-        if i > 0:
-            list_of_char[ord(name[i])]["letter_before"].append(ord(name[i - 1]))
+        if ord(name[i]) > 33:
+            list_of_char[ord(name[i])]["count"] += 1
 
-        if i < len(name) - 1:
-            list_of_char[ord(name[i])]["letter_after"].append(ord(name[i + 1]))
+            if i > 0:
+                list_of_char[ord(name[i])]["letter_before"].append(ord(name[i - 1]))
+
+            if i < len(name) - 1:
+                list_of_char[ord(name[i])]["letter_after"].append(ord(name[i + 1]))
 
         i += 1
 
@@ -49,10 +46,16 @@ def print_list():
         i += 1
 
 
-if __name__ == '__main__':
+def count_list():
     init_list_character()
+
+    list_of_name = open("name_list.txt")
 
     for n in list_of_name:
         count_character(n)
 
     print_list()
+
+
+if __name__ == '__main__':
+    count_list()
